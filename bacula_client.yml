@@ -1,0 +1,12 @@
+- hosts: all
+  user: root
+  sudo: yes
+  tasks:
+   - name: bacula-client install
+     yum: name=bacula-client state=installed
+
+   - name: bacula config setting
+     copy: src=bacula-fd.conf dest=/etc/bacula/bacula-fd.conf
+
+   - name: bacula-fd service on & start
+     service: name=bacula-fd state=running enabled=yes
